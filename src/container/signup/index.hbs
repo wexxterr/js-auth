@@ -3,9 +3,25 @@
 в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
 }}
 
-<main>
-	Test
-</main>
+<div class="page page--background">
+    <header>
+        {{> back-button}}
+    </header>
+
+    <form class="page__section">
+        <h1 class="page__title">Реєстрація</h1>
+
+        <div class="form">
+            <div class="form__item">Test
+                <span class="form__error">Помилка</span>
+            </div>
+        </div>
+    </form>
+
+    <button onclick="signupForm.submit()" class="button" type="button">Зареєструватися</button>
+
+    {{!-- <span class="alert alert--error">Уваґа, ошібка!</span> --}}
+</div>
 
 {{!
     Цей код містить лише те, що буде виводитись в <body>

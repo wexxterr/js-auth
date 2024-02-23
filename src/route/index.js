@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 })
 
 // Підключіть файли роутів
-const test = require('./auth')
+const auth = require('./auth')
 // Підключіть інші файли роутів, якщо є
 
 // Об'єднайте файли роутів за потреби
