@@ -3,7 +3,7 @@ export const REG_EXP_EMAIL = new RegExp(
 )
 
 export const REG_EXP_PASSWORD = new RegExp(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
 )
 
 export class Form {
@@ -20,41 +20,55 @@ export class Form {
 
         if (error) {
             this.setError(name, error)
-            this,error[name] = value
+            this.error[name] = error
         } else {
             this.setError(name, null)
             delete this.error[name]
         }
+
         this.checkDisabled()
     }
 
     setError = (name, error) => {
-        const span = document.querySelector(`.form__error[name="${name}"]`,)
+        const span = document.querySelector(
+            `.form__error[name="${name}"]`,
+        )
 
-        const field = document.querySelector(`.validation[name="${name}"]`,)
+        const field = document.querySelector(
+            `.validation[name="${name}"]`,
+        )
 
         if (span) {
-            span.classList.toggle('form__error--active', Boolean(error),)
+            span.classList.toggle(
+                'form__error--active',
+                Boolean(error),
+            )
             span.innerText = error || ''
         }
 
         if (field) {
-            field.classList.toggle('validation--active', Boolean(error),)
+            field.classList.toggle(
+                'validation--active',
+                Boolean(error),
+            )
         }
     }
 
     checkDisabled = () => {
         let disabled = false
-        
+
         Object.values(this.FIELD_NAME).forEach((name) => {
-            if(this.error[name] || this.value[name] === undefined) {
+            if (
+                this.error[name] ||
+                this.value[name] === undefined
+            ) {
                 disabled = true
             }
         })
 
         const el = document.querySelector(`.button`)
 
-        if(el) {
+        if (el) {
             el.classList.toggle(
                 'button--disabled',
                 Boolean(disabled),
@@ -64,13 +78,12 @@ export class Form {
         this.disabled = disabled
     }
 
-    VlidateAll = () => {
+    validateAll = () => {
         Object.values(this.FIELD_NAME).forEach((name) => {
             const error = this.validate(name, this.value[name])
 
             if (error) {
                 this.setError(name, error)
-                disabled = true
             }
         })
     }
@@ -78,7 +91,7 @@ export class Form {
     setAlert = (status, text) => {
         const el = document.querySelector(`.alert`)
 
-        if(status === 'progress') {
+        if (status === 'progress') {
             el.className = 'alert alert--progress'
         } else if (status === 'success') {
             el.className = 'alert alert--success'

@@ -77,13 +77,10 @@ router.post('/signup', function (req, res) {
 
     const newUser = User.create({ email, password, role })
 
-    const session = Session.create(newUser)
-
     Confirm.create(newUser.email)
 
     return res.status(200).json({
       message: 'Користувач успішно зареєстрованний',
-      session,
     })
   } catch (err) {
     return res.status(400).json({
@@ -91,7 +88,6 @@ router.post('/signup', function (req, res) {
     })
   }
 })
-
 
 // ================================================================
 
