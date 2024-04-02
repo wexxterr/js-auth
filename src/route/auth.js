@@ -23,6 +23,7 @@ User.create({
   email: 'developer@mail.com',
   password: 123,
   role: 3,
+  isConfirm: true,
 })
 
 // ================================================================
@@ -371,4 +372,3 @@ router.post('/login', function (req, res) {
 
 // Підключаємо роутер до бек-енду
 module.exports = router
- 
